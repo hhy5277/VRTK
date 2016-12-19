@@ -3,6 +3,7 @@ namespace VRTK
 {
 #if VRTK_SDK_STEAMVR
     using UnityEngine;
+    using System.Collections.Generic;
     using Valve.VR;
 
     /// <summary>
@@ -12,6 +13,14 @@ namespace VRTK
     {
         private SteamVR_TrackedObject cachedLeftTrackedObject;
         private SteamVR_TrackedObject cachedRightTrackedObject;
+
+        /// <summary>
+        /// The ProcessUpdate method enables an SDK to run logic for every Unity Update
+        /// </summary>
+        /// <param name="">A dictionary of generic options that can be used to within the update.</param>
+        public override void ProcessUpdate(uint index, Dictionary<string, object> options)
+        {
+        }
 
         /// <summary>
         /// The GetControllerDefaultColliderPath returns the path to the prefab that contains the collider objects for the default controller of this SDK.
@@ -755,25 +764,7 @@ namespace VRTK
             return trackedObject;
         }
 
-        private GameObject GetActualController(GameObject controller)
-        {
-            GameObject returnController = null;
-            var sdkManager = VRTK_SDKManager.instance;
-            if (sdkManager != null)
-            {
-                if (IsControllerLeftHand(controller))
-                {
-                    returnController = sdkManager.actualLeftController;
-                }
-                else if (IsControllerRightHand(controller))
-                {
-                    returnController = sdkManager.actualRightController;
-                }
-            }
-            return returnController;
-        }
-
-        private static bool IsButtonPressed(uint index, ButtonPressTypes type, ulong button)
+        private bool IsButtonPressed(uint index, ButtonPressTypes type, ulong button)
         {
             if (index >= uint.MaxValue)
             {

@@ -1,6 +1,7 @@
 ﻿namespace VRTK
 {
     using UnityEngine;
+    using System.Collections.Generic;
 
     public class VRTK_SDK_Bridge
     {
@@ -8,6 +9,11 @@
         private static SDK_BaseHeadset headsetSDK = null;
         private static SDK_BaseController controllerSDK = null;
         private static SDK_BaseBoundaries boundariesSDK = null;
+
+        public static void ControllerProcessUpdate(uint index, Dictionary<string, object> options = null)
+        {
+            GetControllerSDK().ProcessUpdate(index, options);
+        }
 
         public static string GetControllerDefaultColliderPath()
         {

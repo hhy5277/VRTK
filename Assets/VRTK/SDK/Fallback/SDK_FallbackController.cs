@@ -2,6 +2,7 @@
 namespace VRTK
 {
     using UnityEngine;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The Base Controller SDK script provides a bridge to SDK methods that deal with the input devices.
@@ -11,6 +12,14 @@ namespace VRTK
     /// </remarks>
     public class SDK_FallbackController : SDK_BaseController
     {
+        /// <summary>
+        /// The ProcessUpdate method enables an SDK to run logic for every Unity Update
+        /// </summary>
+        /// <param name="">A dictionary of generic options that can be used to within the update.</param>
+        public override void ProcessUpdate(uint index, Dictionary<string, object> options)
+        {
+        }
+
         /// <summary>
         /// The GetControllerDefaultColliderPath returns the path to the prefab that contains the collider objects for the default controller of this SDK.
         /// </summary>
